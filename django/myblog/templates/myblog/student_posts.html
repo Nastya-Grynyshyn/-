@@ -1,0 +1,23 @@
+{% extends 'myblog/student_base.html' %}
+{% block content %}
+  {% for post in posts %}
+    <article class="card mb-3">
+      <div class="card-body">
+        <div class="d-flex justify-content-between">
+          <small class="text-muted">
+            published: {{ post.published_date|date:"M d, Y, H:i" }}
+          </small>
+          <a class="text-decoration-none" href="{% url 'post_detail' pk=post.pk %}">
+            Comments: {{ post.comments.count }}
+          </a>
+        </div>
+        <h3 class="mt-2">
+          <a class="post-title" href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a>
+        </h3>
+        <p class="mb-0">{{ post.text|truncatechars:220 }}</p>
+      </div>
+    </article>
+  {% empty %}
+    <p>Поки що немає публікацій.</p>
+  {% endfor %}
+{% endblock %}

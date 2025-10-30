@@ -1,0 +1,18 @@
+{% extends 'myblog/student_base.html' %}
+{% block content %}
+<h4>Увійти</h4>
+{% if form.errors %}
+  <div class="alert alert-danger">Невірний логін або пароль.</div>
+{% endif %}
+<form method="post">
+  {% csrf_token %}
+  <div class="mb-3">
+    {{ form.username.label_tag }} {{ form.username }}
+  </div>
+  <div class="mb-3">
+    {{ form.password.label_tag }} {{ form.password }}
+  </div>
+  <button class="btn btn-primary" type="submit">Log in</button>
+  <input type="hidden" name="next" value="{{ next }}">
+</form>
+{% endblock %}

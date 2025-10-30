@@ -1,0 +1,9 @@
+{% extends 'myblog/student_base.html' %}
+{% block content %}
+<h4>{% if form.instance.pk %}Редагувати пост{% else %}Новий пост{% endif %}</h4>
+<form method="post" class="mt-3">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button class="btn btn-primary" type="submit">Зберегти</button>
+</form>
+{% endblock %}

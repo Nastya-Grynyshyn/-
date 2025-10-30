@@ -1,0 +1,170 @@
+/* ===== myblog/static/css/blog.css ===== */
+
+/* Палiтра та базові налаштування */
+:root{
+  --brand:#c55406;         /* хедер */
+  --brand-2:#e06a15;       /* акценти */
+  --text:#1f2937;          /* основний текст */
+  --muted:#6b7280;         /* другорядний текст */
+  --bg:#f7fafc;            /* фон сторінки */
+  --card:#ffffff;          /* фон карток */
+  --stroke:#e5e7eb;        /* бордери */
+  --ok:#10b981;            /* success */
+  --warn:#f59e0b;          /* warning */
+  --danger:#ef4444;        /* danger */
+  --link:#2563eb;          /* посилання */
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font:16px/1.55 "Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans","Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol",sans-serif;
+}
+
+/* ===== Хедер ===== */
+.page-header{
+  position:sticky; top:0; z-index:10;
+  background:linear-gradient(0deg,var(--brand-2),var(--brand));
+  color:#fff;
+  padding:14px 0;
+  box-shadow:0 2px 8px rgba(0,0,0,.08);
+}
+.page-header .container{
+  width:min(1100px,92%);
+  margin:0 auto;
+  display:flex; align-items:center; justify-content:space-between;
+}
+.page-header h1{ margin:0; font-family:'Lobster',cursive; font-weight:700; letter-spacing:.2px; }
+.page-header h1 a{ color:#fff; text-decoration:none }
+.top-menu{
+  display:inline-flex; align-items:center; gap:.5rem;
+  background:#fff0; color:#fff; text-decoration:none;
+  border:1.5px solid rgba(255,255,255,.6);
+  padding:.45rem .7rem; border-radius:.7rem;
+  transition:.2s ease;
+  font-weight:600;
+}
+.top-menu:hover{ background:rgba(255,255,255,.12); border-color:#fff }
+
+/* мітка користувача та logout */
+#logout{ margin:0 12px 0 0; color:#fff; font-family:'Lobster',cursive; display:inline-flex; align-items:center; gap:.4rem }
+#logout small a{ color:#fff; text-decoration:none; border-bottom:1px dashed rgba(255,255,255,.7) }
+#logout small a:hover{ border-bottom-color:#fff }
+
+/* ===== Контентний контейнер ===== */
+.content.container{
+  width:min(1000px,92%);
+  margin:28px auto 60px;
+}
+
+/* ===== Картки постів ===== */
+.post{
+  background:var(--card);
+  border:1px solid var(--stroke);
+  border-radius:14px;
+  padding:18px 20px;
+  margin:18px 0;
+  box-shadow:0 4px 14px rgba(17,24,39,.06);
+  transition:box-shadow .2s ease, transform .02s ease;
+}
+.post:hover{ box-shadow:0 10px 22px rgba(17,24,39,.08) }
+
+.post .date{
+  color:var(--muted);
+  font-size:.9rem;
+  margin-bottom:.4rem;
+}
+
+.post h1, .post h2, .post h3{ margin:.2rem 0 .5rem; font-family:'Lobster',cursive }
+.post h1 a, .post h2 a{ color:var(--link); text-decoration:none }
+.post h1 a:hover, .post h2 a:hover{ text-decoration:underline }
+
+.post p{ margin:.25rem 0 .5rem }
+
+/* ===== Бейдж з кількістю коментарів ===== */
+.comments-badge{
+  margin-left:auto;
+  display:inline-flex; align-items:center; gap:.35rem;
+  font-weight:600; font-size:.9rem;
+  padding:.2rem .55rem;
+  color:var(--link);
+  background:#eef2ff;
+  border:1px solid #dbe5ff;
+  border-radius:.6rem;
+  text-decoration:none;
+}
+.comments-badge:hover{ background:#e5ecff }
+
+/* ===== Група кнопок (Publish/Edit/Delete, тощо) ===== */
+.btn{ 
+  --b:var(--stroke); --fg:var(--brand-2); --bg:#fff;
+  display:inline-flex; align-items:center; gap:.45rem;
+  padding:.45rem .7rem; border-radius:.6rem;
+  border:1.5px solid var(--b); color:var(--fg); background:var(--bg);
+  text-decoration:none; cursor:pointer; font-weight:600; font-size:.9rem;
+  transition:.2s ease;
+}
+.btn + .btn{ margin-left:.35rem }
+.btn:hover{ box-shadow:0 4px 10px rgba(0,0,0,.06) }
+.btn-primary{ --bg:var(--brand-2); --b:var(--brand-2); color:#fff }
+.btn-success{ --bg:var(--ok); --b:var(--ok); color:#fff }
+.btn-danger{ --fg:var(--danger); --b:var(--danger); }
+.btn-outline{ background:#fff }
+
+/* маленькі іконкокнопки */
+.btn-icon{
+  width:34px; height:34px; padding:0; justify-content:center;
+}
+
+/* ===== Коментарі ===== */
+.comment{
+  border-left:3px solid var(--stroke);
+  background:#fafafa;
+  padding:12px 14px;
+  border-radius:10px;
+  margin:12px 0;
+}
+.comment .date{ color:var(--muted); font-size:.85rem; margin-bottom:.3rem }
+
+/* ===== Форми (логін, створення поста, коментарі) ===== */
+.post-form, form{
+  display:block;
+  background:var(--card);
+  border:1px solid var(--stroke);
+  border-radius:14px;
+  padding:18px 20px;
+  box-shadow:0 6px 16px rgba(17,24,39,.06);
+}
+.post-form p, form p{ margin:.6rem 0 }
+
+input[type=text], input[type=password], textarea, select{
+  width:100%;
+  padding:.65rem .8rem;
+  border:1.5px solid var(--stroke);
+  border-radius:.55rem;
+  outline:none;
+  background:#fff;
+  transition:border-color .15s ease, box-shadow .15s ease;
+  font:inherit;
+}
+textarea{ min-height:140px; resize:vertical }
+input:focus, textarea:focus, select:focus{
+  border-color:#a5b4fc;
+  box-shadow:0 0 0 3px rgba(165,180,252,.35);
+}
+
+/* кнопка збереження форм */
+.save.btn{ --bg:var(--brand-2); --b:var(--brand-2); color:#fff }
+
+/* ===== Посилання в тексті ===== */
+a{ color:var(--link) }
+a:hover{ text-decoration:underline }
+
+/* ===== Утиліти ===== */
+.d-flex{ display:flex; gap:.5rem; align-items:center }
+.justify-between{ justify-content:space-between }
+.mt-1{ margin-top:.25rem } .mt-2{ margin-top:.5rem } .mt-3{ margin-top:.75rem } .mt-4{ margin-top:1rem }
+.mb-0{ margin-bottom:0 } .mb-1{ margin-bottom:.25rem } .mb-2{ margin-bottom:.5rem } .mb-3{ margin-bottom:.75rem }

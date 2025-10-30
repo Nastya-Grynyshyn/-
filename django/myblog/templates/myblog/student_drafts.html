@@ -1,0 +1,20 @@
+{% extends 'myblog/student_base.html' %}
+{% block content %}
+<h4>Чернетки</h4>
+{% for post in posts %}
+  <article class="card mb-3">
+    <div class="card-body">
+      <div class="d-flex justify-content-between">
+        <small class="text-muted">created: {{ post.created_date|date:"d.m.Y H:i" }}</small>
+        <span class="badge text-bg-warning">draft</span>
+      </div>
+      <h3 class="mt-2">
+        <a class="post-title" href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a>
+      </h3>
+      <p class="mb-0">{{ post.text|truncatechars:220 }}</p>
+    </div>
+  </article>
+{% empty %}
+  <p>Чернеток немає.</p>
+{% endfor %}
+{% endblock %}
